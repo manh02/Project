@@ -1,5 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import ProductCard from '@/components/ProductCard'
+import CategoryCard from '@/components/CategoryCard'
+import { products, categories } from '@/data/products'
 
 export default function Home() {
   return (
@@ -8,12 +11,13 @@ export default function Home() {
       <section className="relative h-[80vh] flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg.jpg"
+            src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=1920&h=1080&fit=crop"
             alt="Beauty Garage Hero"
             fill
             className="object-cover"
             priority
           />
+          <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
         <div className="container relative z-10">
           <div className="max-w-2xl text-white">
@@ -37,7 +41,9 @@ export default function Home() {
             Our Best-Selling Products
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Product cards will be added here */}
+            {products.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
           </div>
         </div>
       </section>
@@ -49,7 +55,9 @@ export default function Home() {
             Shop by Category
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Category cards will be added here */}
+            {categories.map((category) => (
+              <CategoryCard key={category.id} {...category} />
+            ))}
           </div>
         </div>
       </section>
